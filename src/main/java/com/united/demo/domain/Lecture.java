@@ -1,5 +1,6 @@
-package com.united.demo.models;
+package com.united.demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,10 +23,12 @@ public class Lecture {
 
     private String name;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "section_id")
     private Section section;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "resource_id")
     private Resource resource;

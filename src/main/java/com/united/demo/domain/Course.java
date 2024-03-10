@@ -1,5 +1,6 @@
-package com.united.demo.models;
+package com.united.demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,6 +33,7 @@ public class Course {
     private LocalDate updatedAt;
 
 //    @ManyToMany(cascade = CascadeType.ALL)
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "author_course",
@@ -44,6 +46,7 @@ public class Course {
     )
     private List<Author> authors;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "course")
     private List<Section> sections;
 

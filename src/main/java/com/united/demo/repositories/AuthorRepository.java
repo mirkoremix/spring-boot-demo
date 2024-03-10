@@ -1,6 +1,6 @@
 package com.united.demo.repositories;
 
-import com.united.demo.models.Author;
+import com.united.demo.domain.Author;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

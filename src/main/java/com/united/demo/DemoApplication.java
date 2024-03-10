@@ -1,17 +1,7 @@
 package com.united.demo;
 
-import com.united.demo.models.Author;
-import com.united.demo.models.Course;
-import com.united.demo.models.Section;
-import com.united.demo.repositories.AuthorRepository;
-import com.united.demo.repositories.CourseRepository;
-import com.united.demo.repositories.SectionRepository;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-
-import java.util.List;
 
 @SpringBootApplication
 public class DemoApplication {
@@ -22,6 +12,7 @@ public class DemoApplication {
 		System.out.println("Hello MIMI!!!");
 	}
 
+// for testing purposes. Better way to test by writing tests! jokesonyou
 //	@Bean
 //	public CommandLineRunner commandLineRunner(
 //			AuthorRepository repository,

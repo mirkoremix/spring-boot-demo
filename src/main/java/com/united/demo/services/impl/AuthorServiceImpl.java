@@ -1,6 +1,6 @@
 package com.united.demo.services.impl;
 
-import com.united.demo.models.Author;
+import com.united.demo.domain.Author;
 import com.united.demo.repositories.AuthorRepository;
 import com.united.demo.services.AuthorService;
 import org.springframework.stereotype.Service;
@@ -22,8 +22,8 @@ public class AuthorServiceImpl implements AuthorService {
     @Override
     public List<Author> findAll() {
         return StreamSupport.stream(authorRepository
-                .findAll()
-                .spliterator(),false)
+                        .findAll()
+                        .spliterator(), false)
                 .collect(Collectors.toList());
     }
 

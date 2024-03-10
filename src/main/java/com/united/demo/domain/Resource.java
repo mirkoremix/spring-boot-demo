@@ -1,5 +1,6 @@
-package com.united.demo.models;
+package com.united.demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,6 +31,7 @@ public class Resource {
     // enum sa seterom
     private String type;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "resource")
     private Lecture lecture;
 

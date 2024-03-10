@@ -1,5 +1,6 @@
-package com.united.demo.models;
+package com.united.demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,10 +27,12 @@ public class Section {
     @Column(name = "section_order")
     private String order;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "course_id")
     private Course course;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "section")
     private List<Lecture> lectures;
 
