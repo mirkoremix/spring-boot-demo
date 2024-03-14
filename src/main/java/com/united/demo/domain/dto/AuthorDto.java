@@ -1,6 +1,7 @@
 package com.united.demo.domain.dto;
 
 import com.united.demo.domain.Course;
+import com.united.demo.validation.CustomValidation;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -20,6 +21,7 @@ public class AuthorDto {
 
     private Long id;
 
+    @CustomValidation
     private String firstName;
 
     @NotNull

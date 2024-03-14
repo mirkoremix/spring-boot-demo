@@ -3,6 +3,8 @@ package com.united.demo.services.impl;
 import com.united.demo.domain.Author;
 import com.united.demo.repositories.AuthorRepository;
 import com.united.demo.services.AuthorService;
+import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +13,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Service
+@Slf4j
 public class AuthorServiceImpl implements AuthorService {
 
     private AuthorRepository authorRepository;

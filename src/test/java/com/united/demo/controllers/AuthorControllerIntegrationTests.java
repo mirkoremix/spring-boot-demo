@@ -16,6 +16,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+
 import static org.hamcrest.Matchers.hasSize;
 
 @SpringBootTest
@@ -106,4 +111,44 @@ public class AuthorControllerIntegrationTests {
                 .andExpect(MockMvcResultMatchers.status().isConflict());
     }
 
+
+    @Test
+    public void whenFilterList_thenSuccess(){
+        List<String> names = Arrays.asList("Adam", "Alexander", "John", "Tom");
+        List<String> result = names.stream()
+                .filter(name -> name.startsWith("A"))
+//                .filter(name -> name.)
+                .collect(Collectors.toList());
+
+//        assertEquals(2, result.size());
+//        assertThat(result, contains("Adam","Alexander"));
+    }
+
+    @Test
+    public void whenFilterListWithCombinedPredicatesUsingAnd_thenSuccess(){
+        Predicate<String> predicate1 =  str -> str.startsWith("A");
+        Predicate<String> predicate2 = str -> str.length() < 5;
+        List<String> names = Arrays.asList("Adam", "Alexander", "John", "Tom");
+
+
+        List<String> result = names.stream()
+                .filter(predicate1.and(predicate2))
+                .collect(Collectors.toList());
+
+//        assertEquals(1, result.size());
+//        assertThat(result, contains("Adam"));
+    }
+
+    @Test
+    public void whenFilterListWithCombinedPredicatesInline_thenSuccess(){
+        List<String> names = Arrays.asList("Adam", "Alexander", "John", "Tom");
+
+        List<String> result = names.stream()
+                .filter(((Predicate<String>)name -> name.startsWith("A"))
+                        .and(name -> name.length()<5))
+                .collect(Collectors.toList());
+
+//        assertEquals(1, result.size());
+//        assertThat(result, contains("Adam"));
+    }
 }
