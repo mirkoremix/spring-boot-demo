@@ -21,7 +21,9 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasSize;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class) // probati bez ovoga
@@ -90,7 +92,7 @@ public class AuthorControllerIntegrationTests {
 
     @Test
     public void testCreateAuthorReturns201Created() throws Exception {
-        AuthorDto a1 = AuthorDto.builder().email("a1@email.com").firstName("a1").lastName("a1").build();
+        AuthorDto a1 = AuthorDto.builder().email("a1@email.com").firstName("A1").lastName("a1").build();
         String a1Json = objectMapper.writeValueAsString(a1);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/api/authors")
@@ -117,11 +119,10 @@ public class AuthorControllerIntegrationTests {
         List<String> names = Arrays.asList("Adam", "Alexander", "John", "Tom");
         List<String> result = names.stream()
                 .filter(name -> name.startsWith("A"))
-//                .filter(name -> name.)
                 .collect(Collectors.toList());
 
-//        assertEquals(2, result.size());
-//        assertThat(result, contains("Adam","Alexander"));
+        assertEquals(2, result.size());
+        assertThat(result).contains("Adam","Alexander");
     }
 
     @Test
@@ -135,8 +136,8 @@ public class AuthorControllerIntegrationTests {
                 .filter(predicate1.and(predicate2))
                 .collect(Collectors.toList());
 
-//        assertEquals(1, result.size());
-//        assertThat(result, contains("Adam"));
+        assertEquals(1, result.size());
+        assertThat(result).contains("Adam");
     }
 
     @Test
@@ -148,7 +149,7 @@ public class AuthorControllerIntegrationTests {
                         .and(name -> name.length()<5))
                 .collect(Collectors.toList());
 
-//        assertEquals(1, result.size());
-//        assertThat(result, contains("Adam"));
+        assertEquals(1, result.size());
+        assertThat(result).contains("Adam");
     }
 }

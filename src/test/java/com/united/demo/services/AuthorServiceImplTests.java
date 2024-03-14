@@ -54,14 +54,14 @@ public class AuthorServiceImplTests {
         assertThat(result).isNotNull().isEqualTo(a1);
     }
 
-    @Test // nije dobar test, jer se desi da se baci exception i ne dodje do verify
-    public void testSaveAuthorDidntHappen() {
-        when(repository.save(any())).thenThrow(new RuntimeException("something went wrong"));
-
-        final Author result = underTest.save(any());
-
-        verify(repository, never()).save(any(Author.class));
-    }
+//    @Test // nije dobar test, jer se desi da se baci exception i ne dodje do verify
+//    public void testSaveAuthorDidntHappen() {
+//        when(repository.save(any())).thenThrow(new RuntimeException("something went wrong"));
+//
+//        final Author result = underTest.save(any());
+//
+//        verify(repository, never()).save(any(Author.class));
+//    }
 
     @Test
     public void functionTest() {
